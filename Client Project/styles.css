@@ -1,0 +1,131 @@
+:root {
+  --page-width: 720px;
+  --ink: #262824;
+  --copy: #30332f;
+  --link: #0877b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.site-shell {
+  background: #ffffff;
+  min-height: 100vh;
+  width: 100%;
+  /* Full-bleed on laptops/desktops; readable width is handled by h1/p/max-width below */
+  max-width: 100%;
+}
+
+
+.hero {
+  position: relative;
+  width: 100%;
+}
+
+.hero-banner {
+  display: block;
+  height: clamp(1px, 90vw, 400px);
+  object-fit: cover;
+  object-position: center top;
+  width: 100%;
+}
+
+.profile-logo {
+  aspect-ratio: 1;
+  background: #07101f;
+  border-radius: 50%;
+  bottom: clamp(-61px, -8vw, -43px);
+  display: block;
+  height: clamp(94px, 18vw, 128px);
+  left: clamp(32px, 6vw, 50px);
+  object-fit: cover;
+  position: absolute;
+  width: clamp(94px, 18vw, 128px);
+}
+
+.content {
+  padding: clamp(132px, 24vw, 178px) clamp(32px, 5.8vw, 56px) 42vh;
+}
+
+h1 {
+  color: var(--ink);
+  font-size: clamp(35px, 7.65vw, 55px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.13;
+  margin: 0 0 clamp(48px, 8vw, 64px);
+  max-width: 640px;
+  text-wrap: balance;
+}
+
+p {
+  color: var(--copy);
+  font-size: clamp(18px, 4.2vw, 25px);
+  letter-spacing: 0;
+  line-height: 1.35;
+  margin: 0 0 24px;
+  max-width: 64ch;
+}
+
+
+.inline-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  word-break: break-word;
+}
+
+.whatsapp-button {
+  align-items: center;
+  background: #000000;
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: clamp(17px, 3.7vw, 23px);
+  font-weight: 700;
+  gap: 9px;
+  line-height: 1;
+  min-height: 48px;
+  padding: 0.76em 0.96em;
+  text-decoration: none;
+}
+
+.whatsapp-button:focus-visible {
+  outline: 3px solid #55a9ff;
+  outline-offset: 4px;
+}
+
+@media (min-width: 721px) {
+  body {
+    background: #f5f5f5;
+  }
+
+  /* Keep full-width, but add a subtle separator like before */
+  .site-shell {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  /* On larger screens, cap the content slightly so it doesn't feel too wide */
+  .content {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
