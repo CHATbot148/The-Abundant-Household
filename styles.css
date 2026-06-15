@@ -1,8 +1,11 @@
 :root {
   --page-width: 720px;
-  --ink: #262824;
-  --copy: #30332f;
-  --link: #0877b8;
+  --avatar-size: clamp(88px, 22vw, 126px);
+  --ink: #171a18;
+  --copy: #424842;
+  --link: #176ddc;
+  --line: rgba(9, 24, 47, 0.1);
+  --shadow: 0 24px 70px rgba(4, 12, 24, 0.12);
 }
 
 * {
@@ -17,9 +20,11 @@ body {
 }
 
 body {
-  background: #ffffff;
+  background:
+    linear-gradient(180deg, #f7f9fc 0%, #ffffff 42%),
+    #ffffff;
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   margin: 0;
 }
 
@@ -27,59 +32,61 @@ body {
   background: #ffffff;
   min-height: 100vh;
   width: 100%;
-  /* Full-bleed on laptops/desktops; readable width is handled by h1/p/max-width below */
-  max-width: 100%;
+  max-width: var(--page-width);
+  overflow-x: hidden;
 }
 
 
 .hero {
+  background: #030915;
   position: relative;
   width: 100%;
 }
 
 .hero-banner {
   display: block;
-  height: clamp(1px, 90vw, 400px);
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  object-fit: contain;
   width: 100%;
 }
 
 .profile-logo {
   aspect-ratio: 1;
   background: #07101f;
+  border: clamp(3px, 1.1vw, 3px) solid #ffffff;
   border-radius: 50%;
-  bottom: clamp(-61px, -8vw, -43px);
+  bottom: calc(var(--avatar-size) * -0.5);
+  box-shadow: 0 20px 45px rgba(4, 10, 20, 0.28);
   display: block;
-  height: clamp(94px, 18vw, 128px);
-  left: clamp(32px, 6vw, 50px);
+  height: var(--avatar-size);
+  left: clamp(24px, 6vw, 48px);
   object-fit: cover;
   position: absolute;
-  width: clamp(94px, 18vw, 128px);
+  width: var(--avatar-size);
 }
 
 .content {
-  padding: clamp(132px, 24vw, 178px) clamp(32px, 5.8vw, 56px) 42vh;
+  padding: calc((var(--avatar-size) * 0.5) + clamp(54px, 11vw, 82px)) clamp(26px, 6vw, 56px) 34vh;
 }
 
 h1 {
   color: var(--ink);
-  font-size: clamp(35px, 7.65vw, 55px);
-  font-weight: 800;
+  font-size: clamp(32px, 7.1vw, 52px);
+  font-weight: 850;
   letter-spacing: 0;
-  line-height: 1.13;
-  margin: 0 0 clamp(48px, 8vw, 64px);
-  max-width: 640px;
+  line-height: 1.08;
+  margin: 0 0 clamp(34px, 7vw, 50px);
+  max-width: 620px;
   text-wrap: balance;
 }
 
 p {
   color: var(--copy);
-  font-size: clamp(18px, 4.2vw, 25px);
+  font-size: clamp(17px, 4vw, 23px);
   letter-spacing: 0;
-  line-height: 1.35;
-  margin: 0 0 24px;
-  max-width: 64ch;
+  line-height: 1.45;
+  margin: 0 0 26px;
+  max-width: 58ch;
 }
 
 
@@ -93,17 +100,25 @@ p {
 
 .whatsapp-button {
   align-items: center;
-  background: #000000;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #050505 0%, #111722 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
   color: #ffffff;
   display: inline-flex;
-  font-size: clamp(17px, 3.7vw, 23px);
-  font-weight: 700;
-  gap: 9px;
+  font-size: clamp(16px, 3.7vw, 21px);
+  font-weight: 760;
+  gap: 10px;
   line-height: 1;
-  min-height: 48px;
-  padding: 0.76em 0.96em;
+  min-height: 50px;
+  padding: 0.82em 1.04em;
   text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.whatsapp-button:hover {
+  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.27);
+  transform: translateY(-1px);
 }
 
 .whatsapp-button:focus-visible {
@@ -113,19 +128,30 @@ p {
 
 @media (min-width: 721px) {
   body {
-    background: #f5f5f5;
+    background:
+      radial-gradient(circle at 50% 0, rgba(38, 108, 220, 0.12), transparent 34rem),
+      #eef2f7;
+    display: flex;
+    justify-content: center;
   }
 
-  /* Keep full-width, but add a subtle separator like before */
   .site-shell {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
   }
 
-  /* On larger screens, cap the content slightly so it doesn't feel too wide */
   .content {
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
   }
 }
 
+@media (max-width: 420px) {
+  .content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .profile-logo {
+    left: 24px;
+  }
+}
